@@ -1,0 +1,21 @@
+sequenceDiagram
+    actor C as Commissioner
+    participant UI as React app
+    participant API as MatchupController
+    participant S as MatchupService
+    participant A as LeagueAccess
+    participant R as Repositories
+    participant F as FantasyScoringService
+    C->>UI: Click "Calculate score"
+    UI->>API: PUT /api/matchups/{id}/calculate (Bearer JWT)
+    API->>S: calculate(matchupId, email)
+    S->>A: requireCommissioner(leagueId, email)
+    A-->>S: allowed (or 403)
+    S->>R: load matchup, rosters, weekly stats
+    loop each starter (BENCH is skipped)
+        S->>F: calculateFantasyPoints(stats)
+        F-->>S: points
+    end
+    S->>S: set scores, finalize, update wins/losses/ties/points
+    S-->>API: MatchupResponse
+    API-->>UI: 200 OK

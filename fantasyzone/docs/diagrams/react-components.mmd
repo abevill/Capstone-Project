@@ -1,0 +1,19 @@
+flowchart TD
+  main["main.tsx"] --> Theme["ThemeProvider (useContext)"]
+  Theme --> Auth["AuthProvider (useContext + useReducer)"]
+  Auth --> App
+  App --> Navbar
+  App --> Routes
+  Routes --> Public["Public pages<br/>Home, Login, Register, Leagues,<br/>LeagueDetail, Players"]
+  Routes --> PR["ProtectedRoute"]
+  PR --> Private["Dashboard, CreateLeague, TeamPage"]
+  PR --> AdminOnly["Admin (adminOnly)"]
+  Public --> Shared
+  Private --> Shared
+  AdminOnly --> Shared
+  Shared["Shared components<br/>Button, Input, Select, Card, Modal,<br/>Table, Pagination, Async, Feedback"]
+  Public --> Hook["useFetch hook"]
+  Private --> Hook
+  AdminOnly --> Hook
+  Hook --> Api["services/api.ts<br/>fetch + JWT header + ApiError"]
+  Api --> REST[("Spring Boot REST API")]

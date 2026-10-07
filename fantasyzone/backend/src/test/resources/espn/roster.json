@@ -1,0 +1,603 @@
+{
+ "team": {
+  "id": "9",
+  "abbreviation": "GB"
+ },
+ "season": {
+  "year": 2026,
+  "displayName": "2026",
+  "type": 2,
+  "name": "Regular Season"
+ },
+ "athletes": [
+  {
+   "position": "offense",
+   "items": [
+    {
+     "id": "4242390",
+     "fullName": "Aaron Banks",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4240090",
+     "fullName": "Mekhi Becton",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4873706",
+     "fullName": "Anthony Belton",
+     "position": {
+      "abbreviation": "OT"
+     }
+    },
+    {
+     "id": "3149687",
+     "fullName": "Chris Brooks",
+     "position": {
+      "abbreviation": "RB"
+     }
+    },
+    {
+     "id": "4569661",
+     "fullName": "Jager Burton",
+     "position": {
+      "abbreviation": "C"
+     }
+    },
+    {
+     "id": "4361904",
+     "fullName": "Travis Glover",
+     "position": {
+      "abbreviation": "OT"
+     }
+    },
+    {
+     "id": "4701936",
+     "fullName": "Matthew Golden",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4047365",
+     "fullName": "Josh Jacobs",
+     "position": {
+      "abbreviation": "RB"
+     }
+    },
+    {
+     "id": "4360887",
+     "fullName": "Donovan Jennings",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4819231",
+     "fullName": "Kaleb Johnson",
+     "position": {
+      "abbreviation": "RB"
+     }
+    },
+    {
+     "id": "4572680",
+     "fullName": "Tucker Kraft",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "4429023",
+     "fullName": "MarShawn Lloyd",
+     "position": {
+      "abbreviation": "RB"
+     }
+    },
+    {
+     "id": "4036378",
+     "fullName": "Jordan Love",
+     "position": {
+      "abbreviation": "QB"
+     }
+    },
+    {
+     "id": "4259305",
+     "fullName": "Bo Melton",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4428037",
+     "fullName": "Jacob Monk",
+     "position": {
+      "abbreviation": "C"
+     }
+    },
+    {
+     "id": "4430191",
+     "fullName": "Skyy Moore",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "3821571",
+     "fullName": "Jordan Morgan",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4431346",
+     "fullName": "Mark Redman",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "4426411",
+     "fullName": "Sean Rhyan",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "3054212",
+     "fullName": "Jonnu Smith",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "4635009",
+     "fullName": "J. Michael Sturdivant",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "14163",
+     "fullName": "Tyrod Taylor",
+     "position": {
+      "abbreviation": "QB"
+     }
+    },
+    {
+     "id": "2512477",
+     "fullName": "Laken Tomlinson",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4248528",
+     "fullName": "Christian Watson",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4360086",
+     "fullName": "Josh Whyle",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "2312707",
+     "fullName": "John Williams",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "14931",
+     "fullName": "Kevin Zeitler",
+     "position": {
+      "abbreviation": "G"
+     }
+    }
+   ]
+  },
+  {
+   "position": "defense",
+   "items": [
+    {
+     "id": "4373423",
+     "fullName": "Karl Brooks",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4688930",
+     "fullName": "Javon Bullard",
+     "position": {
+      "abbreviation": "S"
+     }
+    },
+    {
+     "id": "4887255",
+     "fullName": "Anthony Campbell",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "5076652",
+     "fullName": "Brandon Cisse",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "4430438",
+     "fullName": "Edgerrin Cooper",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4361776",
+     "fullName": "Brenton Cox Jr.",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4685315",
+     "fullName": "Dani Dennis-Sutton",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4259762",
+     "fullName": "Jonathan Ford",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "3124005",
+     "fullName": "Zaire Franklin",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4427356",
+     "fullName": "Kamal Hadden",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "2983055",
+     "fullName": "Javon Hargrave",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4567406",
+     "fullName": "Ty'Ron Hopper",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4820574",
+     "fullName": "Chris McClellan",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4239947",
+     "fullName": "Isaiah McDuffie",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4241470",
+     "fullName": "Xavier McKinney",
+     "position": {
+      "abbreviation": "S"
+     }
+    },
+    {
+     "id": "4036141",
+     "fullName": "Nick Niemann",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4259493",
+     "fullName": "Keisean Nixon",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "4374037",
+     "fullName": "Kitan Oladapo",
+     "position": {
+      "abbreviation": "S"
+     }
+    },
+    {
+     "id": "4683643",
+     "fullName": "Barryn Sorrell",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4258206",
+     "fullName": "Benjamin St-Juste",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "4430965",
+     "fullName": "Carrington Valentine",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "4686906",
+     "fullName": "Lukas Van Ness",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4036153",
+     "fullName": "Kristian Welch",
+     "position": {
+      "abbreviation": "LB"
+     }
+    },
+    {
+     "id": "4428863",
+     "fullName": "Evan Williams",
+     "position": {
+      "abbreviation": "S"
+     }
+    },
+    {
+     "id": "4361791",
+     "fullName": "Devonte Wyatt",
+     "position": {
+      "abbreviation": "DT"
+     }
+    }
+   ]
+  },
+  {
+   "position": "specialTeam",
+   "items": [
+    {
+     "id": "4422336",
+     "fullName": "Matt Orzech",
+     "position": {
+      "abbreviation": "LS"
+     }
+    },
+    {
+     "id": "4869461",
+     "fullName": "Trey Smack",
+     "position": {
+      "abbreviation": "PK"
+     }
+    },
+    {
+     "id": "4248789",
+     "fullName": "Daniel Whelan",
+     "position": {
+      "abbreviation": "P"
+     }
+    }
+   ]
+  },
+  {
+   "position": "injuredReserveOrOut",
+   "items": [
+    {
+     "id": "4240435",
+     "fullName": "Zach Bako-Bewele",
+     "position": {
+      "abbreviation": "OT"
+     }
+    },
+    {
+     "id": "4709980",
+     "fullName": "Johnathan Baldwin II",
+     "position": {
+      "abbreviation": "S"
+     }
+    },
+    {
+     "id": "4429136",
+     "fullName": "Warren Brinson",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4428085",
+     "fullName": "Luke Musgrave",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "4683059",
+     "fullName": "Collin Oliver",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4361423",
+     "fullName": "Micah Parsons",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4362249",
+     "fullName": "Jayden Reed",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4240677",
+     "fullName": "Jordon Riley",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4431487",
+     "fullName": "Savion Williams",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4361027",
+     "fullName": "Thomas Yassmin",
+     "position": {
+      "abbreviation": "TE"
+     }
+    }
+   ]
+  },
+  {
+   "position": "suspended",
+   "items": []
+  },
+  {
+   "position": "practiceSquad",
+   "items": [
+    {
+     "id": "5150999",
+     "fullName": "David Blay Jr.",
+     "position": {
+      "abbreviation": "DT"
+     }
+    },
+    {
+     "id": "4426972",
+     "fullName": "Dalton Cooper",
+     "position": {
+      "abbreviation": "OT"
+     }
+    },
+    {
+     "id": "4429466",
+     "fullName": "Drake Dabney",
+     "position": {
+      "abbreviation": "TE"
+     }
+    },
+    {
+     "id": "4687706",
+     "fullName": "Josh Gesky",
+     "position": {
+      "abbreviation": "G"
+     }
+    },
+    {
+     "id": "4373814",
+     "fullName": "Kahlef Hailassie",
+     "position": {
+      "abbreviation": "DB"
+     }
+    },
+    {
+     "id": "4685402",
+     "fullName": "Domani Jackson",
+     "position": {
+      "abbreviation": "CB"
+     }
+    },
+    {
+     "id": "4726151",
+     "fullName": "Nyjalik Kelly",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "5277116",
+     "fullName": "Lenny Krieg",
+     "position": {
+      "abbreviation": "PK"
+     }
+    },
+    {
+     "id": "4242996",
+     "fullName": "Arron Mosby",
+     "position": {
+      "abbreviation": "DE"
+     }
+    },
+    {
+     "id": "4428116",
+     "fullName": "Isaiah Neyor",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4578436",
+     "fullName": "Coleman Owen",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4572380",
+     "fullName": "Quincy Skinner Jr.",
+     "position": {
+      "abbreviation": "WR"
+     }
+    },
+    {
+     "id": "4428512",
+     "fullName": "Kedon Slovis",
+     "position": {
+      "abbreviation": "QB"
+     }
+    },
+    {
+     "id": "4249836",
+     "fullName": "Pierre Strong Jr.",
+     "position": {
+      "abbreviation": "RB"
+     }
+    },
+    {
+     "id": "4581189",
+     "fullName": "Dillon Wade",
+     "position": {
+      "abbreviation": "G"
+     }
+    }
+   ]
+  }
+ ]
+}

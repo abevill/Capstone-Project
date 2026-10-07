@@ -1,0 +1,32 @@
+{
+ "leagues": [
+  {
+   "season": {
+    "year": 2026
+   }
+  }
+ ],
+ "week": {
+  "number": 4
+ },
+ "events": [
+  {
+   "id": "401872964",
+   "shortName": "PIT @ CLE",
+   "status": {
+    "type": {
+     "completed": true
+    }
+   }
+  },
+  {
+   "id": "401872965",
+   "shortName": "IND VS WSH",
+   "status": {
+    "type": {
+     "completed": false
+    }
+   }
+  }
+ ]
+}

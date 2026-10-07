@@ -1,0 +1,102 @@
+erDiagram
+    USERS ||--o{ USER_ROLES : has
+    ROLES ||--o{ USER_ROLES : grants
+    USERS ||--o{ LEAGUE_MEMBERS : joins
+    LEAGUES ||--o{ LEAGUE_MEMBERS : has
+    USERS ||--o{ FANTASY_TEAMS : owns
+    LEAGUES ||--o{ FANTASY_TEAMS : contains
+    FANTASY_TEAMS ||--o{ ROSTER_PLAYERS : "has spots"
+    NFL_PLAYERS ||--o{ ROSTER_PLAYERS : fills
+    LEAGUES ||--o{ MATCHUPS : schedules
+    FANTASY_TEAMS ||--o{ MATCHUPS : "home team"
+    FANTASY_TEAMS ||--o{ MATCHUPS : "away team"
+    NFL_PLAYERS ||--o{ PLAYER_WEEKLY_STATS : records
+    FANTASY_TEAMS ||--o{ ROSTER_TRANSACTIONS : logs
+    NFL_PLAYERS ||--o{ ROSTER_TRANSACTIONS : involves
+    USERS ||--o{ ROSTER_TRANSACTIONS : performs
+
+    USERS {
+        bigint id PK
+        varchar email UK
+        varchar display_name
+        varchar password_hash
+        boolean enabled
+    }
+    ROLES {
+        bigint id PK
+        varchar name UK
+    }
+    USER_ROLES {
+        bigint user_id FK
+        bigint role_id FK
+    }
+    LEAGUES {
+        bigint id PK
+        varchar name
+        varchar join_code UK
+        int season
+        boolean rosters_locked
+    }
+    LEAGUE_MEMBERS {
+        bigint id PK
+        bigint user_id FK
+        bigint league_id FK
+        boolean commissioner
+    }
+    FANTASY_TEAMS {
+        bigint id PK
+        varchar name
+        bigint league_id FK
+        bigint owner_id FK
+        int wins
+        int losses
+        int ties
+        double points_for
+    }
+    NFL_PLAYERS {
+        bigint id PK
+        varchar external_id UK
+        varchar name
+        varchar position
+        varchar nfl_team
+    }
+    ROSTER_PLAYERS {
+        bigint id PK
+        bigint fantasy_team_id FK
+        bigint nfl_player_id FK
+        varchar position_slot
+    }
+    MATCHUPS {
+        bigint id PK
+        bigint league_id FK
+        int week
+        bigint home_team_id FK
+        bigint away_team_id FK
+        double home_score
+        double away_score
+        boolean finalized
+    }
+    PLAYER_WEEKLY_STATS {
+        bigint id PK
+        bigint nfl_player_id FK
+        int season
+        int week
+        int passing_yards
+        int passing_touchdowns
+        int interceptions
+        int rushing_yards
+        int rushing_touchdowns
+        int receptions
+        int receiving_yards
+        int receiving_touchdowns
+        int fumbles_lost
+    }
+    ROSTER_TRANSACTIONS {
+        bigint id PK
+        bigint fantasy_team_id FK
+        bigint nfl_player_id FK
+        bigint user_id FK
+        varchar type
+        varchar position_slot
+        datetime created_at
+    }

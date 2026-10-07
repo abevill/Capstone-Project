@@ -1,0 +1,18 @@
+flowchart LR
+  subgraph Browser
+    SPA["React + TypeScript SPA<br/>Vite, React Router"]
+  end
+  subgraph API["Spring Boot REST API"]
+    SEC["Security filters<br/>rate limit, JWT, roles"]
+    CTL["Controllers<br/>validation, HTTP status codes"]
+    SVC["Services<br/>league rules, scoring, scheduling"]
+    REP["Spring Data JPA repositories"]
+    ERR["Global exception handler"]
+    SEC --> CTL --> SVC --> REP
+    CTL -.-> ERR
+  end
+  DB[("MySQL database")]
+  EXT["ESPN public endpoints"]
+  SPA -- "JSON over HTTP + Bearer JWT" --> SEC
+  REP --> DB
+  EXT -- "admin-triggered sync via SportsDataService" --> SVC
