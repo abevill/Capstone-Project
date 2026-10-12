@@ -1,7 +1,8 @@
 package com.fantasyzone.service;
 
 import com.fantasyzone.TestData;
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.ConflictException;
 import com.fantasyzone.repository.*;

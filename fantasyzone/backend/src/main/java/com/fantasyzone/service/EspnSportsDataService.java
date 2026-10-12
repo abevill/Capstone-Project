@@ -1,6 +1,7 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.exception.SportsDataException;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;

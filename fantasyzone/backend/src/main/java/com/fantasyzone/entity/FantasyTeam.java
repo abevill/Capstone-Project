@@ -17,6 +17,11 @@ public class FantasyTeam {
     @NotBlank @Size(max = 60)
     private String name;
 
+    private int wins;
+    private int losses;
+    private int ties;
+    private double pointsFor;
+
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "league_id")
     private League league;
@@ -25,10 +30,7 @@ public class FantasyTeam {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    private int wins;
-    private int losses;
-    private int ties;
-    private double pointsFor;
+
 
     // One fantasy team has many roster spots
     @OneToMany(mappedBy = "fantasyTeam", cascade = CascadeType.ALL, orphanRemoval = true)

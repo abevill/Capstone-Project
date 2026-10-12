@@ -1,6 +1,7 @@
 package com.fantasyzone.controller;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.service.*;
 import jakarta.validation.Valid;
 import org.springframework.http.*;
@@ -43,10 +44,10 @@ public class TeamController {
     }
 
     @PostMapping("/teams/{teamId}/roster/players/{playerId}")
-    public ResponseEntity<RosterEntryResponse> add(@PathVariable Long teamId, @PathVariable Long playerId,
-                                                   @Valid @RequestBody AddPlayerRequest req, Authentication auth) {
+    public ResponseEntity<DTO.RosterEntryResponse> add(@PathVariable Long teamId, @PathVariable Long playerId,
+                                                       Authentication auth) {
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(rosters.addPlayer(teamId, playerId, req.positionSlot(), auth.getName()));
+                .body(rosters.addPlayer(teamId, playerId, auth.getName()));
     }
 
     @DeleteMapping("/teams/{teamId}/roster/players/{playerId}")

@@ -73,8 +73,8 @@ export const matchupsApi = {
 export const teamsApi = {
   get: (id: number) => request<Team>(`/api/teams/${id}`),
   roster: (id: number) => request<RosterEntry[]>(`/api/teams/${id}/roster`),
-  addPlayer: (teamId: number, playerId: number, positionSlot: string) =>
-    request<RosterEntry>(`/api/teams/${teamId}/roster/players/${playerId}`, { method: 'POST', ...json({ positionSlot }) }),
+  addPlayer: (teamId: number, playerId: number) =>
+      request<RosterEntry>(`/api/teams/${teamId}/roster/players/${playerId}`, { method: 'POST' }),
   dropPlayer: (teamId: number, playerId: number) =>
     request<void>(`/api/teams/${teamId}/roster/players/${playerId}`, { method: 'DELETE' }),
   transactions: (id: number) => request<RosterTransaction[]>(`/api/teams/${id}/transactions`),
@@ -117,4 +117,9 @@ export const adminApi = {
   },
 };
 
+export interface AssistantAnswer { answer: string; model: string; dataUsed: string[] }
 
+export const assistantApi = {
+  ask: (body: { question: string; teamId?: number; playerIds?: number[]; week?: number }) =>
+      request<AssistantAnswer>('/api/assistant/ask', { method: 'POST', body: JSON.stringify(body) }),
+};

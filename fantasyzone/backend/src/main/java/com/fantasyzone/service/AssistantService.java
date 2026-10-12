@@ -1,7 +1,6 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.AssistantRequest;
-import com.fantasyzone.dto.AssistantResponse;
+import com.fantasyzone.dto.DTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,11 +38,11 @@ public class AssistantService {
         this.rateLimiter = rateLimiter;
     }
 
-    public AssistantResponse ask(AssistantRequest request, String email) {
+    public DTO.AssistantResponse ask(DTO.AssistantRequest request, String email) {
         rateLimiter.check(email);
         AssistantContextBuilder.Context context = contextBuilder.build(request, email);
         String answer = llm.complete(SYSTEM_PROMPT, userPrompt(request.question(), context.text()));
-        return new AssistantResponse(answer.trim(), llm.modelName(), context.dataUsed());
+        return new DTO.AssistantResponse(answer.trim(), llm.modelName(), context.dataUsed());
     }
 
     static String userPrompt(String question, String data) {

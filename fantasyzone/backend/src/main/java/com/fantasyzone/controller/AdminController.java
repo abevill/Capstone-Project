@@ -1,6 +1,7 @@
 package com.fantasyzone.controller;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.service.*;
 import org.springframework.data.domain.*;
 import org.springframework.security.core.Authentication;

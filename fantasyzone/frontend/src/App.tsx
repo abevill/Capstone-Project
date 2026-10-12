@@ -13,6 +13,7 @@ import Players from './pages/Players';
 import Admin from './pages/Admin';
 import NotFound from './pages/NotFound';
 import PlayerDetail from './pages/PlayerDetail';
+import ChatWidget from './components/ChatWidget';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/players/:playerId" element={<PlayerDetail />} />
         </Routes>
       </main>
+      <ChatWidget />
     </>
   );
 }

@@ -1,6 +1,7 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.*;
@@ -25,7 +26,7 @@ public class AuthService {
     }
 
     @Transactional
-    public AuthResponse register(RegisterRequest req) {
+    public DTO.AuthResponse register(DTO.RegisterRequest req) {
         String email = req.email().trim().toLowerCase();
         if (users.existsByEmail(email)) throw new ConflictException("An account with that email already exists");
         User u = new User();
@@ -39,14 +40,14 @@ public class AuthService {
     }
 
     @Transactional(readOnly = true)
-    public AuthResponse login(LoginRequest req) {
+    public DTO.AuthResponse login(DTO.LoginRequest req) {
         String email = req.email().trim().toLowerCase();
         authManager.authenticate(new UsernamePasswordAuthenticationToken(email, req.password()));
         return toResponse(users.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found")));
     }
 
-    private AuthResponse toResponse(User u) {
+    private DTO.AuthResponse toResponse(User u) {
         List<String> roleNames = u.getRoles().stream().map(Role::getName).sorted().toList();
-        return new AuthResponse(u.getId(), jwt.generateToken(u.getEmail()), u.getEmail(), u.getDisplayName(), roleNames);
+        return new DTO.AuthResponse(u.getId(), jwt.generateToken(u.getEmail()), u.getEmail(), u.getDisplayName(), roleNames);
     }
 }

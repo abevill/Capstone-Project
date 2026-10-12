@@ -1,7 +1,5 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.AssistantRequest;
-import com.fantasyzone.dto.AssistantResponse;
 import com.fantasyzone.exception.LlmException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

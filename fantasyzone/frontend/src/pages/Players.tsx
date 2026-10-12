@@ -37,7 +37,7 @@ const POSITION_OPTIONS = [
   { value: 'TE', label: 'TE' },
   { value: 'PK', label: 'PK' }
 ];
-const SLOTS = ['QB', 'RB', 'WR', 'TE', 'FLEX', 'BENCH'];
+
 
 export default function Players() {
   const { user } = useAuth();
@@ -61,7 +61,7 @@ export default function Players() {
 
   const [target, setTarget] = useState<Player | null>(null);
   const [teamId, setTeamId] = useState('');
-  const [slot, setSlot] = useState('BENCH');
+
   const [busy, setBusy] = useState(false);
   const [modalError, setModalError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -81,9 +81,8 @@ export default function Players() {
     setBusy(true);
     setModalError(null);
     try {
-      await teamsApi.addPlayer(Number(chosenTeam), target.id, slot);
-      setNotice(`${target.name} was added to your roster.`);
-      setTarget(null);
+      const entry = await teamsApi.addPlayer(Number(chosenTeam), target.id);
+      setNotice(`${target.name} was added to your roster (${entry.slot}).`);
     } catch (e) {
       setModalError(errMsg(e));
     } finally {
@@ -149,8 +148,9 @@ export default function Players() {
         ) : (
           <>
             <Select label="Team" value={chosenTeam} onChange={(e) => setTeamId(e.target.value)} options={teamOptions} />
-            <Select label="Roster slot" value={slot} onChange={(e) => setSlot(e.target.value)}
-                    options={SLOTS.map((s) => ({ value: s, label: s }))} />
+            <p className="muted">
+              FantasyZone puts the player in the right starting spot automatically, or on the bench if that spot is full.
+            </p>
             <div className="row-actions">
               <Button loading={busy} onClick={addPlayer}>Add to roster</Button>
               <Button variant="secondary" onClick={() => setTarget(null)}>Cancel</Button>

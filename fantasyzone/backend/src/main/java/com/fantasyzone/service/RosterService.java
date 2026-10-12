@@ -1,15 +1,15 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.RosterEntryResponse;
+import com.fantasyzone.dto.DTO;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 @Service
 public class RosterService {
-    static final int MAX_ROSTER_SIZE = 15;
 
     private final FantasyTeamRepository teams;
     private final NflPlayerRepository players;
@@ -24,19 +24,21 @@ public class RosterService {
     }
 
     @Transactional
-    public RosterEntryResponse addPlayer(Long teamId, Long playerId, String slot, String email) {
+    public DTO.RosterEntryResponse addPlayer(Long teamId, Long playerId, String email) {
         FantasyTeam team = loadEditableTeam(teamId, email);
         NflPlayer player = players.findById(playerId)
-            .orElseThrow(() -> new NotFoundException("Player not found"));
+                .orElseThrow(() -> new NotFoundException("Player not found"));
         if (roster.isPlayerTakenInLeague(team.getLeague().getId(), playerId))
             throw new ConflictException("Player is already on a team in this league");
-        if (roster.findByFantasyTeamId(teamId).size() >= MAX_ROSTER_SIZE)
-            throw new ConflictException("Roster is full (" + MAX_ROSTER_SIZE + " players)");
+        List<RosterPlayer> current = roster.findByFantasyTeamId(teamId);
+        if (current.size() >= LineupRules.MAX_ROSTER_SIZE)
+            throw new ConflictException("Roster is full (" + LineupRules.MAX_ROSTER_SIZE + " players)");
 
         RosterPlayer spot = new RosterPlayer();
         spot.setFantasyTeam(team);
         spot.setNflPlayer(player);
-        spot.setPositionSlot(slot.trim().toUpperCase());
+        spot.setPositionSlot(LineupRules.assignSlot(player.getPosition(),
+                current.stream().map(RosterPlayer::getPositionSlot).toList()));
         RosterPlayer saved = roster.save(spot);
         log(team, player, TransactionType.ADD, saved.getPositionSlot(), email);
         return toEntry(saved);
@@ -72,8 +74,8 @@ public class RosterService {
         transactions.save(t);
     }
 
-    static RosterEntryResponse toEntry(RosterPlayer rp) {
+    static DTO.RosterEntryResponse toEntry(RosterPlayer rp) {
         NflPlayer p = rp.getNflPlayer();
-        return new RosterEntryResponse(p.getId(), p.getName(), p.getPosition(), p.getNflTeam(), rp.getPositionSlot());
+        return new DTO.RosterEntryResponse(p.getId(), p.getName(), p.getPosition(), p.getNflTeam(), rp.getPositionSlot());
     }
 }

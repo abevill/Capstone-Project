@@ -1,7 +1,6 @@
 package com.fantasyzone.controller;
 
-import com.fantasyzone.dto.AssistantRequest;
-import com.fantasyzone.dto.AssistantResponse;
+import com.fantasyzone.dto.DTO;
 import com.fantasyzone.service.AssistantService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
@@ -16,7 +15,7 @@ public class AssistantController {
     public AssistantController(AssistantService assistant) { this.assistant = assistant; }
 
     @PostMapping("/ask")
-    public AssistantResponse ask(@Valid @RequestBody AssistantRequest request, Authentication auth) {
+    public DTO.AssistantResponse ask(@Valid @RequestBody DTO.AssistantRequest request, Authentication auth) {
         return assistant.ask(request, auth.getName());
     }
 }

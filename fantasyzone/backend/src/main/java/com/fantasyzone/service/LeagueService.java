@@ -1,6 +1,7 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.*;
@@ -23,7 +24,7 @@ public class LeagueService {
     }
 
     @Transactional
-    public LeagueResponse create(CreateLeagueRequest req, String email) {
+    public DTO.LeagueResponse create(DTO.CreateLeagueRequest req, String email) {
         User user = access.user(email);
         League l = new League();
         l.setName(req.name().trim());
@@ -35,7 +36,7 @@ public class LeagueService {
     }
 
     @Transactional
-    public LeagueResponse join(String joinCode, String email) {
+    public DTO.LeagueResponse join(String joinCode, String email) {
         User user = access.user(email);
         League l = leagues.findByJoinCode(joinCode.trim().toUpperCase())
             .orElseThrow(() -> new NotFoundException("Invalid join code"));
@@ -46,21 +47,21 @@ public class LeagueService {
     }
 
     @Transactional(readOnly = true)
-    public Page<LeagueResponse> list(Pageable pageable) {
+    public Page<DTO.LeagueResponse> list(Pageable pageable) {
         return leagues.findAll(pageable).map(l -> toResponse(l, false));
     }
 
     @Transactional(readOnly = true)
-    public LeagueResponse get(Long id) {
+    public DTO.LeagueResponse get(Long id) {
         return toResponse(find(id), false);
     }
 
     @Transactional(readOnly = true)
-    public List<MemberResponse> members(Long leagueId, String email) {
+    public List<DTO.MemberResponse> members(Long leagueId, String email) {
         find(leagueId);
         access.requireMember(leagueId, email);
         return members.findByLeagueId(leagueId).stream()
-            .map(m -> new MemberResponse(m.getUser().getId(), m.getUser().getDisplayName(), m.isCommissioner()))
+            .map(m -> new DTO.MemberResponse(m.getUser().getId(), m.getUser().getDisplayName(), m.isCommissioner()))
             .toList();
     }
 
@@ -80,7 +81,7 @@ public class LeagueService {
     }
 
     @Transactional
-    public LeagueResponse setRosterLock(Long leagueId, boolean locked, String email) {
+    public DTO.LeagueResponse setRosterLock(Long leagueId, boolean locked, String email) {
         League l = find(leagueId);
         access.requireCommissioner(leagueId, email);
         l.setRostersLocked(locked);
@@ -104,14 +105,14 @@ public class LeagueService {
         return code;
     }
 
-    private LeagueResponse toResponse(League l, boolean includeCode) {
-        return new LeagueResponse(l.getId(), l.getName(), l.getSeason(), l.isRostersLocked(),
+    private DTO.LeagueResponse toResponse(League l, boolean includeCode) {
+        return new DTO.LeagueResponse(l.getId(), l.getName(), l.getSeason(), l.isRostersLocked(),
             members.countByLeagueId(l.getId()), includeCode ? l.getJoinCode() : null);
     }
 
     /** Leagues the caller belongs to; the join code is included only for leagues they commission. */
     @Transactional(readOnly = true)
-    public List<LeagueResponse> mine(String email) {
+    public List<DTO.LeagueResponse> mine(String email) {
         User u = access.user(email);
         return members.findByUserId(u.getId()).stream()
             .map(m -> toResponse(m.getLeague(), m.isCommissioner())).toList();

@@ -1,6 +1,6 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.MatchupResponse;
+import com.fantasyzone.dto.DTO;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.*;
@@ -26,7 +26,7 @@ public class MatchupService {
     }
 
     @Transactional(readOnly = true)
-    public List<MatchupResponse> list(Long leagueId, Integer week, String email) {
+    public List<DTO.MatchupResponse> list(Long leagueId, Integer week, String email) {
         access.requireMember(leagueId, email);
         List<Matchup> found = week == null
             ? matchups.findByLeagueIdOrderByWeek(leagueId)
@@ -36,7 +36,7 @@ public class MatchupService {
 
     /** Single round-robin schedule using the circle method: n teams produce n-1 weeks. */
     @Transactional
-    public List<MatchupResponse> generate(Long leagueId, String email) {
+    public List<DTO.MatchupResponse> generate(Long leagueId, String email) {
         League league = leagues.findById(leagueId).orElseThrow(() -> new NotFoundException("League not found"));
         access.requireCommissioner(leagueId, email);
         if (matchups.existsByLeagueId(leagueId)) throw new ConflictException("Matchups were already generated");
@@ -62,7 +62,7 @@ public class MatchupService {
 
     /** Calculates both scores from stored stats, then updates wins/losses/ties. Can only run once per matchup. */
     @Transactional
-    public MatchupResponse calculate(Long matchupId, String email) {
+    public DTO.MatchupResponse calculate(Long matchupId, String email) {
         Matchup m = matchups.findById(matchupId).orElseThrow(() -> new NotFoundException("Matchup not found"));
         access.requireCommissioner(m.getLeague().getId(), email);
         if (m.isFinalized()) throw new ConflictException("This matchup is already finalized");
@@ -95,8 +95,8 @@ public class MatchupService {
 
     private static double round(double v) { return Math.round(v * 100.0) / 100.0; }
 
-    private MatchupResponse toResponse(Matchup m) {
-        return new MatchupResponse(m.getId(), m.getWeek(),
+    private DTO.MatchupResponse toResponse(Matchup m) {
+        return new DTO.MatchupResponse(m.getId(), m.getWeek(),
             m.getHomeTeam().getId(), m.getHomeTeam().getName(),
             m.getAwayTeam().getId(), m.getAwayTeam().getName(),
             m.getHomeScore(), m.getAwayScore(), m.isFinalized());

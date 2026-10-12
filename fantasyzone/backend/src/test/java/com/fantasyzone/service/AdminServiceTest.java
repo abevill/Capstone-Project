@@ -1,7 +1,6 @@
 package com.fantasyzone.service;
 
 import com.fantasyzone.TestData;
-import com.fantasyzone.dto.UserSummary;
 import com.fantasyzone.entity.User;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.UserRepository;

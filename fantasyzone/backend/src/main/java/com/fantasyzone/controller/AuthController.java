@@ -1,6 +1,7 @@
 package com.fantasyzone.controller;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.*;
@@ -13,10 +14,10 @@ public class AuthController {
     public AuthController(AuthService auth) { this.auth = auth; }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest req) {
+    public ResponseEntity<DTO.AuthResponse> register(@Valid @RequestBody DTO.RegisterRequest req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(auth.register(req));
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@Valid @RequestBody LoginRequest req) { return auth.login(req); }
+    public DTO.AuthResponse login(@Valid @RequestBody DTO.LoginRequest req) { return auth.login(req); }
 }

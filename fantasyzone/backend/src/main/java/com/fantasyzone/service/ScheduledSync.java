@@ -1,6 +1,6 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.SeasonWeek;
+import com.fantasyzone.dto.DTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -53,7 +53,7 @@ public class ScheduledSync {
     @Scheduled(cron = "${sync.stats-cron:0 0 */6 * * *}")
     public void syncStats() {
         try {
-            SeasonWeek now = sports.currentWeek();
+            DTO.SeasonWeek now = sports.currentWeek();
 
             sync.syncStats(now.season(), now.week());
 

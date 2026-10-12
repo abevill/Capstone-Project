@@ -1,6 +1,7 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.entity.NflPlayer;
 import com.fantasyzone.entity.PlayerWeeklyStats;
 import com.fantasyzone.exception.NotFoundException;

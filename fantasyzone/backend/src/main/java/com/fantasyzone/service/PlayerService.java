@@ -1,7 +1,6 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.PlayersStatsResponse;
-import com.fantasyzone.dto.WeeklyStatsResponse;
+import com.fantasyzone.dto.DTO;
 import com.fantasyzone.entity.NflPlayer;
 import com.fantasyzone.entity.PlayerWeeklyStats;
 import com.fantasyzone.exception.NotFoundException;
@@ -29,7 +28,7 @@ public class PlayerService {
         this.fantasyScoringService = fantasyScoringService;
     }
 
-    public PlayersStatsResponse getPlayerStats(Long playerId) {
+    public DTO.PlayersStatsResponse getPlayerStats(Long playerId) {
 
         NflPlayer player = nflPlayerRepository.findById(playerId)
                 .orElseThrow(() ->
@@ -41,7 +40,7 @@ public class PlayerService {
         List<PlayerWeeklyStats> stats =
                 playerWeeklyStatsRepository.findByNflPlayerId(playerId);
 
-        List<WeeklyStatsResponse> weeklyResponses =
+            List<DTO.WeeklyStatsResponse> weeklyResponses =
                 stats.stream()
                         .map(stat -> {
 
@@ -49,7 +48,7 @@ public class PlayerService {
                                     fantasyScoringService
                                             .calculateFantasyPoints(stat);
 
-                            return new WeeklyStatsResponse(
+                            return new DTO.WeeklyStatsResponse(
                                     stat.getSeason(),
                                     stat.getWeek(),
 
@@ -72,19 +71,19 @@ public class PlayerService {
                         .sorted(
                                 Comparator
                                         .comparingInt(
-                                                WeeklyStatsResponse::season)
+                                                DTO.WeeklyStatsResponse::season)
                                         .thenComparingInt(
-                                                WeeklyStatsResponse::week)
+                                                DTO.WeeklyStatsResponse::week)
                         )
                         .toList();
 
         double totalPoints =
                 weeklyResponses.stream()
                         .mapToDouble(
-                                WeeklyStatsResponse::fantasyPoints)
+                                DTO.WeeklyStatsResponse::fantasyPoints)
                         .sum();
 
-        return new PlayersStatsResponse(
+        return new DTO.PlayersStatsResponse(
                 player.getId(),
                 player.getName(),
                 player.getPosition(),

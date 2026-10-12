@@ -1,6 +1,6 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.RosterEntryResponse;
+import com.fantasyzone.dto.DTO;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.*;
 import com.fantasyzone.repository.*;
@@ -53,7 +53,7 @@ class RosterServiceTest {
 
     @Test
     void ownerCanAddAvailablePlayer() {
-        RosterEntryResponse result = service.addPlayer(10L, 5L, "qb", "owner@test.com");
+        DTO.RosterEntryResponse result = service.addPlayer(10L, 5L,  "owner@test.com");
         assertEquals("QB", result.slot());
         assertEquals("Josh Allen", result.name());
     }
@@ -61,18 +61,18 @@ class RosterServiceTest {
     @Test
     void cannotAddPlayerAlreadyTakenInLeague() {
         when(roster.isPlayerTakenInLeague(1L, 5L)).thenReturn(true);
-        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L, "QB", "owner@test.com"));
+        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L,  "owner@test.com"));
     }
 
     @Test
     void otherUsersCannotEditRoster() {
-        assertThrows(ForbiddenException.class, () -> service.addPlayer(10L, 5L, "QB", "intruder@test.com"));
+        assertThrows(ForbiddenException.class, () -> service.addPlayer(10L, 5L,  "intruder@test.com"));
     }
 
     @Test
     void lockedLeagueRejectsRosterMoves() {
         team.getLeague().setRostersLocked(true);
-        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L, "QB", "owner@test.com"));
+        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L,  "owner@test.com"));
     }
 
     @Test
@@ -84,7 +84,7 @@ class RosterServiceTest {
     @Test
     void cannotAddToFullRoster() {
         when(roster.findByFantasyTeamId(10L)).thenReturn(Collections.nCopies(15, new RosterPlayer()));
-        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L, "BENCH", "owner@test.com"));
+        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L,  "owner@test.com"));
     }
 
     @Test
@@ -98,13 +98,13 @@ class RosterServiceTest {
     @Test
     void adminCanEditAnyRoster() {
         when(access.isAdmin("admin@test.com")).thenReturn(true);
-        RosterEntryResponse result = service.addPlayer(10L, 5L, "WR", "admin@test.com");
-        assertEquals("WR", result.slot());
+        DTO.RosterEntryResponse result = service.addPlayer(10L, 5L,  "admin@test.com");
+        assertEquals("QB", result.slot());
     }
 
     @Test
     void addingAPlayerIsLogged() {
-        service.addPlayer(10L, 5L, "QB", "owner@test.com");
+        service.addPlayer(10L, 5L,  "owner@test.com");
         ArgumentCaptor<RosterTransaction> saved = ArgumentCaptor.forClass(RosterTransaction.class);
         verify(transactions).save(saved.capture());
         assertEquals(TransactionType.ADD, saved.getValue().getType());
@@ -129,7 +129,7 @@ class RosterServiceTest {
     @Test
     void failedMovesAreNotLogged() {
         when(roster.isPlayerTakenInLeague(1L, 5L)).thenReturn(true);
-        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L, "QB", "owner@test.com"));
+        assertThrows(ConflictException.class, () -> service.addPlayer(10L, 5L,  "owner@test.com"));
         verify(transactions, never()).save(any());
     }
 }

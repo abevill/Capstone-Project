@@ -1,6 +1,7 @@
 package com.fantasyzone.service;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import java.util.List;
 
 /** Boundary to the external provider. It supplies real-world data only; it never runs the league. */

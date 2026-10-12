@@ -1,6 +1,7 @@
 package com.fantasyzone.controller;
 
-import com.fantasyzone.dto.*;
+import com.fantasyzone.dto.DTO;
+import com.fantasyzone.dto.DTO.*;
 import com.fantasyzone.entity.*;
 import com.fantasyzone.exception.NotFoundException;
 import com.fantasyzone.repository.*;
@@ -42,11 +43,11 @@ public class PlayerController {
 
 
     @GetMapping("/{playerId}/stats")
-    public List<StatLineResponse> stats(@PathVariable Long playerId) {
+    public List<DTO.StatLineResponse> stats(@PathVariable Long playerId) {
         NflPlayer player = get(playerId);
-        return stats.findByNflPlayerId(playerId).stream().map(s -> new StatLineResponse(
+        return stats.findByNflPlayerId(playerId).stream().map(s -> new DTO.StatLineResponse(
             s.getSeason(), s.getWeek(), scoring.calculateFantasyPoints(s),
-            new PlayerWeeklyStatsDto(player.getExternalId(), s.getSeason(), s.getWeek(),
+            new DTO.PlayerWeeklyStatsDto(player.getExternalId(), s.getSeason(), s.getWeek(),
                 s.getPassingYards(), s.getPassingTouchdowns(), s.getInterceptions(),
                 s.getRushingYards(), s.getRushingTouchdowns(),
                 s.getReceptions(), s.getReceivingYards(), s.getReceivingTouchdowns(), s.getFumblesLost()))).toList();
